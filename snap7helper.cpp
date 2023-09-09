@@ -25,7 +25,7 @@ void Snap7Helper::ScanAlram()
 {
 
     while(1){
-          int length=0;
+        int length=0;
         for(length=0;length<Config.config.length;length++)
         {
         int reConnectTime=0;
