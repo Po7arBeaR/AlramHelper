@@ -83,6 +83,7 @@ void Snap7Helper::FitAlramLog(int Length, int bit)
     if(AlramList.count()<SearchNumb)
     {
         qDebug()<<"报警条目与BYTE长度不一致"<<"报警条目最大长度:"<<AlramList.count()<<"检索条目:"<<SearchNumb;
+        return ;
     }
     if(AlramList.count()>=SearchNumb&&!AlramList[SearchNumb].isLoged)
     {
@@ -124,6 +125,7 @@ void Snap7Helper::CancleFlag(int Length, int bit)
     if(AlramList.count()<SearchNumb)
     {
     qDebug()<<"报警条目与BYTE长度不一致"<<"报警条目最大长度:"<<AlramList.count()<<"检索条目:"<<SearchNumb;
+    return ;
     }
     if(AlramList.count()>=SearchNumb&&AlramList[SearchNumb].isLoged)
     {
