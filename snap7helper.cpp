@@ -13,11 +13,12 @@ Snap7Helper::Snap7Helper(QObject *parent)
 
     if(m_client->Connected())
     {
+        qDebug()<<"连接成功，报警助手启动...";
         ScanAlram();
     }
     else
     {
-        qDebug()<<this->Config.config.Ip<<"连接失败";
+        qDebug()<<this->Config.config.Ip<<"连接失败，请检测配置重新启动...";
     }
 }
 
@@ -80,13 +81,14 @@ void Snap7Helper::ScanAlram()
 void Snap7Helper::FitAlramLog(int Length, int bit)
 {
     int SearchNumb=(Length*8)+bit;
-    if(AlramList.count()<SearchNumb)
+    if(AlramList.count()<=SearchNumb)
     {
-        qDebug()<<"报警条目与BYTE长度不一致"<<"报警条目最大长度:"<<AlramList.count()<<"检索条目:"<<SearchNumb;
+        qDebug()<<"报警条目与BYTE长度不一致"<<"报警条目最大长度:"<<AlramList.count()<<"检索条目:"<<SearchNumb+1;
         return ;
     }
     if(AlramList.count()>=SearchNumb&&!AlramList[SearchNumb].isLoged)
     {
+     //   qDebug()<<SearchNumb<<":"<<AlramList.count();
   //  qDebug()<<AlramList[SearchNumb];
     LoggerServer::getInstance()->log(AlramList[SearchNumb].AlramText);
     AlramList[SearchNumb].isLoged=true;
@@ -124,7 +126,7 @@ void Snap7Helper::CancleFlag(int Length, int bit)
     int SearchNumb=(Length*8)+bit;
     if(AlramList.count()<SearchNumb)
     {
-    qDebug()<<"报警条目与BYTE长度不一致"<<"报警条目最大长度:"<<AlramList.count()<<"检索条目:"<<SearchNumb;
+    qDebug()<<"报警条目与BYTE长度不一致"<<"报警条目最大长度:"<<AlramList.count()<<"检索条目:"<<SearchNumb+1;
     return ;
     }
     if(AlramList.count()>=SearchNumb&&AlramList[SearchNumb].isLoged)

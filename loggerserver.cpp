@@ -31,7 +31,7 @@ LoggerServer *LoggerServer::getInstance()
 
 void LoggerServer::log(const QString& message)
 {
-    qDebug()<<message<<__FUNCTION__;
+    qDebug()<<message;//<<__FUNCTION__;
     if(message=="")return ;
     QString strFileName = QString("%1.txt").arg(QDateTime::currentDateTime().date().toString("yyyyMMdd"));
     QFile log_file("./log/"+strFileName);
